@@ -118,12 +118,9 @@ table tr:hover {
 
 .btn-reaction.active {
   transform: scale(1.5);
-  filter: brightness(2) drop-shadow(0 0 6px rgba(255,255,255,0.5));
+  filter: brightness(1.2) drop-shadow(0 0 6px rgba(255, 255, 255, 0.041));
 }
-.btn-reaction:hover {
-  transform: scale(1.3);
-   filter: brightness(1.6) drop-shadow(0 0 4px rgba(255,255,255,0.25));
-}
+
 
 .reaction-count {
   font-size: 12px;
@@ -152,26 +149,31 @@ table tr:hover {
                                         <td>{{this.month}}</td>
                                         <td>{{this.text}}</td>
                                         <td class="reaction-cell">
-                                            <div class="reaction-group">    
+                                          <div class="reaction-group">
+                                          <div class="reaction-item">
+                                          <button class="btn-reaction {{#if (eq this.reaction 'bad')}}active{{/if}}"
+                                                  onclick="setReaction({{this.id}}, 'bad', this)">🗑️</button>
+                                            <span class="reaction-count"></span>
+                                        </div>
                                             <div class="reaction-item">
-                                                <button class="btn-reaction" onclick="setReaction({{this.id}}, 'bad', this)">🗑️</button>
-                                                <span class="reaction-count">{{#if (eq this.reaction 'bad')}}1{{/if}}</span>
-                                           </div>
+                                        <button class="btn-reaction {{#if (eq this.reaction 'ok')}}active{{/if}}"
+                                                onclick="setReaction({{this.id}}, 'ok', this)">😐</button>
+                                            <span class="reaction-count"></span>
+                                        </div>
                                             <div class="reaction-item">
-                                                <button class="btn-reaction" onclick="setReaction({{this.id}}, 'ok', this)">😐</button>
-                                                <span class="reaction-count">{{#if (eq this.reaction 'ok')}}1{{/if}}</span>
+                                        <button class="btn-reaction {{#if (eq this.reaction 'good')}}active{{/if}}"
+                                                 onclick="setReaction({{this.id}}, 'good', this)">🔥</button>
+                                            <span class="reaction-count"></span>
+                                         </div>
                                             </div>
-                                            <div class="reaction-item">
-                                                <button class="btn-reaction" onclick="setReaction({{this.id}}, 'good', this)">🔥</button>
-                                                <span class="reaction-count">{{#if (eq this.reaction 'good')}}1{{/if}}</span>
-                                            </div>
-                                            </div>
-                            </td>
+                                        </td>
                                 {{/each}}
                             </tbody>
                         </table>
                     <div><a href="/generate" class="btn-generate" >GENERATE</a></div>
                     
+                    
+                       
                         <button onclick="document.getElementById('vid').style.display='block'; this.style.display='none'" class='btn-recroll'>
                             SUPPORT
                         </button>
@@ -179,19 +181,29 @@ table tr:hover {
                         <video autoplay loop muted playsinline id="vid" src="/images/rick.mp4" style="display:none; width:100%; height:100%; position:fixed; top:0; left:0; background:black; z-index:99" type="video/mp4">
                     </video>
                     <script>
-                      function setReaction(id, reaction) {
-                      fetch('/reaction', {
+                     function setReaction(id, reaction, btn) {
+                     fetch('/reaction', {
                      method: 'POST',
-                     headers: {'Content-Type':'application/json'},
-                     body: JSON.stringify({id, reaction})
-                     }).then(() => location.reload());
-                     }
-</script>
+                     headers: { 'Content-Type': 'application/json' },
+                     body: JSON.stringify({ id, reaction })
+                      })
+                    .then(res => res.json())
+                    .then(data => {
+                    if (!data.ok) return;
+                    const group = btn.closest('.reaction-group');
+                    group.querySelectorAll('.btn-reaction').forEach(b => {
+                    b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    })
+                    .catch(err => console.error(err));
+                    }
+                    </script>
             </body>
         </style>
     </head>
 <body>
 
 
- <span class="reaction-count">{{#if (eq this.reaction 'good')}}1{{/if}}</span>
+
 
