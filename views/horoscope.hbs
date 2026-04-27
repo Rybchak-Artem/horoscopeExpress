@@ -1,5 +1,17 @@
 <style>
 
+.btn-recroll {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+}
+
 :root {
   background-color: #000000; 
   color: #ffffff;           
@@ -80,60 +92,41 @@ table tr:hover {
 }
     
 </style>
-        </button>
-            <h1 class="btn-list">HOROSCOPE</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">SIGN</th>
-                            <th scope="col">MONTH</th>
-                            <th scope="col">TEXT</th>
-                        </tr>
-                    </thead>
-                        <tbody>
-                            {{#each horoscope }}
-                                <tr>
-                                    <th scope="row">{{this.id}}</th>
-                                    <td>{{this.sign}}</td>
-                                    <td>{{this.month}}</td>
-                                    <td>{{this.text}}</td>
-                                </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
-                <div><a href="/generate" class="btn-generate" >GENERATE</a></div>
-            </body>
+            </button>
+                <h1 class="btn-list">HOROSCOPE</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">SIGN</th>
+                                <th scope="col">MONTH</th>
+                                <th scope="col">TEXT</th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                                {{#each horoscope }}
+                                    <tr>
+                                        <th scope="row">{{this.id}}</th>
+                                        <td>{{this.sign}}</td>
+                                        <td>{{this.month}}</td>
+                                        <td>{{this.text}}</td>
+                                    </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    <div><a href="/generate" class="btn-generate" >GENERATE</a></div>
+                    
+                        <button onclick="document.getElementById('vid').style.display='block'; this.style.display='none'" class='btn-recroll'>
+                            SUPPORT
+                        </button>
 
-<head>
-  <style>
-    body {
-      background: black;
-    }
-    h1 {
-      color: white;
-    }
-    button {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: white;
-    }
-  </style>
-</head>
+                        <video autoplay loop muted playsinline id="vid" src="/images/rick.mp4" style="display:none; width:100%; height:100%; position:fixed; top:0; left:0; background:black; z-index:99" type="video/mp4">
+                    </video>
+            </body>
+        </style>
+    </head>
 <body>
 
 
-  <button onclick="document.getElementById('vid').style.display='block'; this.style.display='none'">
-    ???
-  </button>
 
-  <video id="vid" src="/images/rick.mp4" style="display:none; width:100%; height:100%; position:fixed; top:0; left:0; background:black; z-index:99">
-  </video>
 
-</body>
