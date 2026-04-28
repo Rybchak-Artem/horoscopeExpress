@@ -52,12 +52,26 @@ router.post('/generate', async (req, res) => {
     const data = await response.json();
     const text = data.choices[0].message.content;
 
-    await db.query(
-    `INSERT INTO horoscope (sign, month, text)
-    VALUES ($1, $2, $3)
-    `,
-    [sign, month, text]
+
+
+    const existingRecord = await db.query(
+      'SELECT id FROM horoscope WHERE sign = $1 AND month = $2',
+      [sign, month]
     );
+
+    if (existingRecord.rows.length > 0) {
+
+      await db.query(
+        'UPDATE horoscope SET text = $1, reaction = NULL WHERE id = $2',
+        [text, existingRecord.rows[0].id]
+      );
+    } else {
+
+      await db.query(
+        `INSERT INTO horoscope (sign, month, text) VALUES ($1, $2, $3)`,
+        [sign, month, text]
+      );
+    }
 
 
     res.redirect('/');
