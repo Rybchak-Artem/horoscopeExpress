@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "horoscope",
   "type": "module",
@@ -18,3 +19,25 @@
     "pg": "^8.20.0"
   }
 }
+=======
+{
+  "name": "horoscope",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "hbs": "^4.2.1",
+    "morgan": "^1.10.1",
+    "openai": "^6.34.0",
+    "pg": "^8.20.0"
+  }
+}
+>>>>>>> 512d02327a419f130a7fed6b626cb64f89dc289f

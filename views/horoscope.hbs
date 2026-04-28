@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <style>
 
 .btn-recroll {
@@ -207,3 +208,214 @@ table tr:hover {
 
 
 
+=======
+<style>
+
+.btn-recroll {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: white;
+}
+
+:root {
+    background-color: #000000; 
+    color: #ffffff;           
+    color-scheme: dark;  
+}
+
+html, body {
+    height: 100% !important;
+    margin: 0;
+}
+
+body {
+    margin: 0;       
+    padding: 0;
+    min-height: 100vh; 
+    background-color: #000000;
+}
+
+table {
+    width: 1000px;
+    margin: 50px auto;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0); 
+    backdrop-filter: blur(10px);         
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+table th {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 14px;
+    text-transform: uppercase;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+table td {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 15px;
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 20px;
+}
+
+table tr:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transition: 0.3s;
+}
+
+.btn-list {
+    margin-left: 850px;
+    margin-top: 200px;
+    color:rgb(255, 255, 255);
+}
+
+.btn-generate {
+    display: block;
+    width: 100px;
+    margin: 20px auto;
+    margin-top: 10px;
+    padding: 10px;
+    background: #28a745;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    border: 1px solid aliceblue;
+}
+
+.reaction-cell {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.reaction-group {
+    display: inline-flex;
+    gap: 8px;
+}
+
+.reaction-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-reaction {
+    border: none;
+    background: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 4px;
+    transition: transform 0.15s, filter 0.15s;
+}
+
+.btn-reaction.active {
+  transform: scale(1.5);
+  filter: brightness(1.2) drop-shadow(0 0 6px rgba(255, 255, 255, 0.041));
+}
+
+
+.reaction-count {
+    font-size: 15px;
+    min-width: 12px;
+}
+
+</style>
+            </button>
+                <h1 class="btn-list">HOROSCOPE</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">SIGN</th>
+                                <th scope="col">MONTH</th>
+                                <th scope="col">TEXT</th>
+                                <th scope="col">REACTION</th>
+                            </tr>
+                        </thead>
+                            <tbody>
+                                {{#each horoscope }}
+                                    <tr>
+                                        <th scope="row">{{this.id}}</th>
+                                        <td>{{this.sign}}</td>
+                                        <td>{{this.month}}</td>
+                                        <td>{{this.text}}</td>
+                                        <td class="reaction-cell">
+                                          <div class="reaction-group">
+                                          <div class="reaction-item">
+                                          <button class="btn-reaction {{#if (eq this.reaction 'bad')}}active{{/if}}"
+                                                  onclick="setReaction({{this.id}}, 'bad', this)">🗑️</button>
+                                            <span class="reaction-count"></span>
+                                        </div>
+                                            <div class="reaction-item">
+                                        <button class="btn-reaction {{#if (eq this.reaction 'ok')}}active{{/if}}"
+                                                onclick="setReaction({{this.id}}, 'ok', this)">😐</button>
+                                            <span class="reaction-count"></span>
+                                        </div>
+                                            <div class="reaction-item">
+                                        <button class="btn-reaction {{#if (eq this.reaction 'good')}}active{{/if}}"
+                                                 onclick="setReaction({{this.id}}, 'good', this)">🔥</button>
+                                            <span class="reaction-count"></span>
+                                         </div>
+                                            </div>
+                                        </td>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    <div><a href="/generate" class="btn-generate" >GENERATE</a></div>
+                    
+                    
+                       
+                        <button onclick="document.getElementById('vid').style.display='block'; this.style.display='none'" class='btn-recroll'>
+                            SUPPORT
+                        </button>
+
+                        <video autoplay loop muted playsinline id="vid" src="/images/rick.mp4" style="display:none; width:100%; height:100%; position:fixed; top:0; left:0; background:black; z-index:99" type="video/mp4">
+                    </video>
+                    <script>
+                     function setReaction(id, reaction, btn) {
+                     fetch('/reaction', {
+                     method: 'POST',
+                     headers: { 'Content-Type': 'application/json' },
+                     body: JSON.stringify({ id, reaction })
+                      })
+                    .then(res => res.json())
+                    .then(data => {
+                    if (!data.ok) return;
+                    const group = btn.closest('.reaction-group');
+                    group.querySelectorAll('.btn-reaction').forEach(b => {
+                    b.classList.remove('active');
+                    });
+                    btn.classList.add('active');
+                    })
+                    .catch(err => console.error(err));
+                    }
+                    </script>
+            </body>
+        </style>
+    </head>
+<body>
+
+
+
+
+>>>>>>> 512d02327a419f130a7fed6b626cb64f89dc289f
