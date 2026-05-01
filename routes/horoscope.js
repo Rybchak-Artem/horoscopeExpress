@@ -40,7 +40,7 @@ router.post('/generate', async (req, res) => {
           },
           {
             role: "user",
-            content: `Напиши короткий гороскоп 4 речення для знака ${sign} на місяць ${month}.`,
+            content: `Напиши короткий гороскоп 3 речення для знака ${sign} на місяць ${month}.`,
           },
         ],
         max_tokens: 512,

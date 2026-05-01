@@ -24,33 +24,41 @@ form {
     width: 300px;
 }
 
-select, button {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #30363d;
-}
-
-option {
-  background: #c9a96e;;
-  
-}
-
 select {
   background: #c9a96e;
-  color: white;
+  border: 1px solid #30363d;
+  color: rgb(0, 0, 0);
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+
 }
 
 .btn-submit {
   background: #c9a96e;
-  color: white;
-  padding: 1rem 1rem;
+  color: rgb(0, 0, 0);
+  height: 40px;
+  width: 130px;
+  margin: auto;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid #30363d;
+}
+.btn-back {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    text-decoration: none;
+    font-size: 50px;
+    color: #c9a96e;
 }
     
 </style>
 
+<div><a href="/" class="btn-back">←</a></div>
+
 <form action="/generate" method="POST">
-  <label for="sign" style= "font-family: Calibri, sans-serif; font-size: 28px; font-color: black;">Оберіть знак:</label>
-  <select style= "font-family: Calibri, sans-serif; font-size: 16px;" name="sign" id="sign">
+  <label for="sign" style= "font-family: Calibri, sans-serif; font-size: 52px; font-weight: bold; color: #c9a96e; margin: auto; margin-bottom: 25px;">Оберіть знак</label>
+  <select style= "font-family: Calibri, sans-serif; font-size: 20px;" name="sign" id="sign">
     <option value="Козоріг">Козоріг♑</option>
     <option value="Водолій">Водолій♒</option>
     <option value="Риби">Риби♓</option>
@@ -64,7 +72,7 @@ select {
     <option value="Скорпіон">Скорпіон♏</option>
     <option value="Стрілець">Стрілець♐</option>
   </select>
-  <select style="font-family: Calibri, sans-serif; font-size: 16px;" name="month" id="month">
+  <select style="font-family: Calibri, sans-serif; font-size: 20px; margin-bottom: 8px" name="month" id="month">
     <option value="Січень">Cічень🎄</option>
     <option value="Лютий">Лютий🏔️</option>
     <option value="Березень">Березень🌱</option>
@@ -79,5 +87,5 @@ select {
     <option value="Грудень">Грудень❄️</option>
   </select>
   
-  <button type="submit" class="btn-submit">Згенерувати гороскоп</button>
+  <button type="submit" class="btn-submit">Згенерувати</button>
 </form>
