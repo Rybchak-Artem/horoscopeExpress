@@ -1,7 +1,6 @@
-<title>Horoscope</title>
-
 <style>
-  body {
+
+body {
     margin: 0;
     min-height: 100vh;
     background: #0a0a1a;
@@ -10,30 +9,43 @@
     align-items: center;
     justify-content: center;
     font-family:'Calibri', sans-serif;
-  }
+    }
 
-  h1 {
-    color: #c9a96e;
-    font-size: 10rem;
-    letter-spacing: 0.1em;
-    margin-bottom: 3rem;
-    text-align: center;
-    margin-top: -7vh;
-  }
-
-  .btn-generate {
+.btn-generate {
     background: #c9a96e;
     color: #0a0a1a;
     border: none;
     font-weight: bold;
     text-decoration: none;
-    padding: 1.2rem 1.8rem;
+    padding: 1rem 1.2rem;
     font-size: 1.3rem;
     border-radius: 10px;
     letter-spacing: 0.1em;
+    margin: 30px;
   }
 
-  .btn-history {
+.text {
+    border: 1px solid #c9a96e;
+    color: #c9a96e;
+    font-size: 2rem;
+    border-radius: 10px;
+    padding: 25px; 
+    margin: 20px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    width: 800px;
+    }
+
+.btn-back {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    text-decoration: none;
+    font-size: 50px;
+    color: #c9a96e;
+}
+
+.btn-history {
     position: absolute;
     bottom: 20px;
     right: 20px;
@@ -49,11 +61,9 @@
 
 </style>
 
-</head>
-<body>
+<a href="/" class="btn-back">🏠︎</a>
 
-  <h1>Horoscope</h1>
-<div><a href="/generate" class="btn-generate">Генерація</a></div>
-<div><a href="/db" class="btn-history">Гороскопи</a></div>
-</body>
-</html>
+<p class="text">{{text}}</p>
+
+<a href="/generate" class="btn-generate">Згенерувати ще</a>
+<a href="/db" class="btn-history">Гороскопи</a>

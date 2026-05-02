@@ -21,15 +21,21 @@ form {
     background: rgba(0, 0, 0, 0);
     padding: 30px;
     border-radius: 10px;
-    width: 300px;
+    width: 700px;
 }
 
 select {
+  width: 200px;
+  margin:auto;
   background: #c9a96e;
   border: 1px solid #30363d;
   color: rgb(0, 0, 0);
   padding: 0.8rem 1rem;
   border-radius: 10px;
+  font-family: sans-serif;
+  font-size: 20px;
+  cursor: pointer;
+
 
 }
 
@@ -38,7 +44,8 @@ select {
   color: rgb(0, 0, 0);
   height: 40px;
   width: 130px;
-  margin: auto;
+  cursor: pointer;
+  margin: 30px auto;
   font-size: 15px;
   border-radius: 10px;
   border: 1px solid #30363d;
@@ -51,14 +58,24 @@ select {
     font-size: 50px;
     color: #c9a96e;
 }
-    
+
+label {
+  font-family: sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #c9a96e;
+  margin: auto;
+  margin-bottom: 30px;
+
+}
+
 </style>
 
 <div><a href="/" class="btn-back">←</a></div>
 
 <form action="/generate" method="POST">
-  <label for="sign" style= "font-family: Calibri, sans-serif; font-size: 52px; font-weight: bold; color: #c9a96e; margin: auto; margin-bottom: 25px;">Оберіть знак</label>
-  <select style= "font-family: Calibri, sans-serif; font-size: 20px;" name="sign" id="sign">
+  <label for="sign" class="label">Оберіть знак та місяць</label>
+  <select name="sign" id="sign">
     <option value="Козоріг">Козоріг♑</option>
     <option value="Водолій">Водолій♒</option>
     <option value="Риби">Риби♓</option>
@@ -72,7 +89,7 @@ select {
     <option value="Скорпіон">Скорпіон♏</option>
     <option value="Стрілець">Стрілець♐</option>
   </select>
-  <select style="font-family: Calibri, sans-serif; font-size: 20px; margin-bottom: 8px" name="month" id="month">
+  <select  name="month" id="month">
     <option value="Січень">Cічень🎄</option>
     <option value="Лютий">Лютий🏔️</option>
     <option value="Березень">Березень🌱</option>

@@ -74,7 +74,7 @@ router.post('/generate', async (req, res) => {
       );
     }
 
-    res.redirect('/db');
+    res.render('horoscope_result', { sign, month, text });
 
   } catch (err) {
     console.error("Groq Error:", err.message);
